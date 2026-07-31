@@ -25,13 +25,11 @@ variable "tags" {
 }
 
 variable "lock" {
-  description = "Optional management lock for the resource group."
+  description = "Optional management lock configuration."
 
   type = object({
     enabled = optional(bool, false)
-    name    = optional(string)
     level   = optional(string, "CanNotDelete")
-    notes   = optional(string)
   })
 
   default = {}
@@ -42,6 +40,6 @@ variable "lock" {
       var.lock.level
     )
 
-    error_message = "The lock level must be either CanNotDelete or ReadOnly."
+    error_message = "Lock level must be either 'CanNotDelete' or 'ReadOnly'."
   }
 }
